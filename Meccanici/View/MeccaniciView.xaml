@@ -1,0 +1,194 @@
+﻿<Page x:Class="Meccanici.View.MeccaniciView"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:md="http://materialdesigninxaml.net/winfx/xaml/themes"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Meccanici.View"
+      mc:Ignorable="d" 
+      d:DesignHeight="300" d:DesignWidth="500" Title="Clienti"
+      DataContext="{Binding Source={StaticResource mainViewModelLocator}, Path=MeccaniciViewModel}" Loaded="Page_Loaded">
+    <Page.Resources>
+        <Storyboard x:Key="StartedEditingAnimation">
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.Y)" Storyboard.TargetName="button1">
+                <EasingDoubleKeyFrame KeyTime="0:0:0.6" Value="0">
+                    <EasingDoubleKeyFrame.EasingFunction>
+                        <BackEase EasingMode="EaseOut" Amplitude="0.5"/>
+                    </EasingDoubleKeyFrame.EasingFunction>
+                </EasingDoubleKeyFrame>
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.Y)" Storyboard.TargetName="button">
+                <EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="0">
+                    <EasingDoubleKeyFrame.EasingFunction>
+                        <BackEase EasingMode="EaseOut" Amplitude="0.5"/>
+                    </EasingDoubleKeyFrame.EasingFunction>
+                </EasingDoubleKeyFrame>
+            </DoubleAnimationUsingKeyFrames>
+        </Storyboard>
+        <Storyboard x:Key="StoppedEditingAnimation">
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.Y)" Storyboard.TargetName="button1">
+                <EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="70">
+                    <EasingDoubleKeyFrame.EasingFunction>
+                        <BackEase EasingMode="EaseIn" Amplitude="0.5"/>
+                    </EasingDoubleKeyFrame.EasingFunction>
+                </EasingDoubleKeyFrame>
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.Y)" Storyboard.TargetName="button">
+                <EasingDoubleKeyFrame KeyTime="0:0:0.6" Value="70">
+                    <EasingDoubleKeyFrame.EasingFunction>
+                        <BackEase EasingMode="EaseIn" Amplitude="0.5"/>
+                    </EasingDoubleKeyFrame.EasingFunction>
+                </EasingDoubleKeyFrame>
+            </DoubleAnimationUsingKeyFrames>
+        </Storyboard>
+    </Page.Resources>
+    <Page.Triggers>
+        <EventTrigger RoutedEvent="FrameworkElement.Loaded"/>
+    </Page.Triggers>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="200"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid Grid.Column="0">
+            <md:ColorZone Background="{StaticResource AccentColor}" Height="50">
+                <md:ColorZone Mode="Standard" Padding="8 4 8 4" CornerRadius="2" Panel.ZIndex="1"
+                                   Margin="8"
+                                   md:ShadowAssist.ShadowDepth="Depth1">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Text="" Foreground="Black" Opacity=".56" FontFamily="/Meccanici;component/Fonts/#Segoe MDL2 Assets" VerticalAlignment="Center"/>
+                        <TextBox Grid.Column="1" Margin="8 0 0 0" BorderThickness="0"  />
+                    </Grid>
+                </md:ColorZone>
+            </md:ColorZone>
+            <ListBox
+                Background="Transparent"
+                BorderBrush="Transparent"
+                Margin="0,50,0,0"
+                ItemsSource="{Binding Mechanics}"
+                SelectedValue="{Binding SelectedMechanic}"
+                SelectedIndex="0">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <Grid Height="35">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="35"/>
+                                <ColumnDefinition/>
+                            </Grid.ColumnDefinitions>
+                            <Grid Grid.Column="0" Height="30" Width="30" Margin="2,2,3,3">
+                                <Ellipse Fill="{StaticResource AccentColor}"/>
+                                <TextBlock Foreground="White" Text="{Binding Initials}" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="10" FontFamily="Segoe UI" FontWeight="Thin" FontStretch="Condensed"/>
+                            </Grid>
+                            <StackPanel Grid.Column="1">
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="{Binding Name}"
+                                   Grid.Column="1"
+                                   VerticalAlignment="Center"
+                                   Margin="10,0,0,0"
+                                   FontSize="14" Height="19"/>
+                                    <TextBlock Text="{Binding Surname}"
+                                   Grid.Column="2"
+                                   VerticalAlignment="Center"
+                                   Margin="5,0,0,0"
+                                   FontSize="14" Height="19"/>
+                                </StackPanel>
+                                <TextBlock Text="{Binding ID}"
+                                   Grid.Column="3"
+                                   VerticalAlignment="Center"
+                                   FontSize="10" Height="19" Margin="10,0,0,0"/>
+                            </StackPanel>
+                        </Grid>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+        </Grid>
+        <Grid Grid.Column="1"
+              DataContext="{Binding SelectedMechanic}">
+            <md:Card
+                md:ShadowAssist.ShadowDepth="Depth5"
+                Margin="5,5,5,-5"
+                VerticalAlignment="Stretch">
+                <Grid>
+                    <Grid Width="80" Height="80" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,10,0,0">
+                        <Ellipse Fill="{StaticResource AccentColor}"/>
+                        <TextBlock Foreground="White" Text="{Binding Initials}" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="36" FontFamily="Segoe UI" FontWeight="Thin" FontStretch="Condensed"/>
+                    </Grid>
+                    <StackPanel Margin="110,10,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="150">
+                        <TextBox
+                            md:HintAssist.Hint="Nome"
+                            IsReadOnly="{Binding 
+                            RelativeSource={RelativeSource FindAncestor,
+                            AncestorType={x:Type Page}},
+                            Path=DataContext.IsEditing, Converter={StaticResource invertBoolConverter}}"
+                            Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                            Text="{Binding Name, Mode=TwoWay}"/>
+                        <TextBox 
+                            md:HintAssist.Hint="Cognome" 
+                            IsReadOnly="{Binding 
+                            RelativeSource={RelativeSource FindAncestor,
+                            AncestorType={x:Type Page}},
+                            Path=DataContext.IsEditing, Converter={StaticResource invertBoolConverter}}"
+                            Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                            Text="{Binding Surname, Mode=TwoWay}" Margin="0,5,0,0"/>
+                    </StackPanel>
+                    <StackPanel
+                        Margin="0,0,10,20"
+                        HorizontalAlignment="Right"
+                        Orientation="Horizontal"
+                        VerticalAlignment="Bottom"
+                        DataContext="{Binding 
+                            RelativeSource={RelativeSource FindAncestor,
+                            AncestorType={x:Type Page}}, Path=DataContext}">
+                        <Button x:Name="button1"
+                            Width="40" Height="40"
+                            md:ShadowAssist.ShadowDepth="Depth3"
+                            Command="{Binding DeleteCommand}"
+                            Style="{StaticResource MaterialDesignFloatingActionAccentButton}"
+                            Background="#FFB62E20"
+                            BorderBrush="#FFB62E20" Margin="0,0,10,0" IsCancel="True" RenderTransformOrigin="0.5,0.5">
+                            <Button.RenderTransform>
+                                <TransformGroup>
+                                    <ScaleTransform/>
+                                    <SkewTransform/>
+                                    <RotateTransform/>
+                                    <TranslateTransform Y="70"/>
+                                </TransformGroup>
+                            </Button.RenderTransform>
+                            <TextBlock Text="" Foreground="#DDFFFFFF" FontFamily="/Meccanici;component/Fonts/#Segoe MDL2 Assets"/>
+                        </Button>
+                        <Button x:Name="button"
+                            Width="40" Height="40"
+                            md:ShadowAssist.ShadowDepth="Depth3"
+                            Command="{Binding SaveCommand}"
+                            Style="{StaticResource MaterialDesignFloatingActionAccentButton}"
+                            Background="{StaticResource AccentColor}"
+                            BorderBrush="{StaticResource AccentColor}" Margin="0,0,10,0" IsCancel="True" RenderTransformOrigin="0.5,0.5">
+                            <Button.RenderTransform>
+                                <TransformGroup>
+                                    <ScaleTransform/>
+                                    <SkewTransform/>
+                                    <RotateTransform/>
+                                    <TranslateTransform Y="70"/>
+                                </TransformGroup>
+                            </Button.RenderTransform>
+                            <TextBlock Text="" Foreground="#DDFFFFFF" FontFamily="/Meccanici;component/Fonts/#Segoe MDL2 Assets"/>
+                        </Button>
+                        <Button
+                            Width="40" Height="40"
+                            md:ShadowAssist.ShadowDepth="Depth3"
+                            Command="{Binding EditCommand}"
+                            Style="{StaticResource MaterialDesignFloatingActionAccentButton}"
+                            Background="{StaticResource AccentColor}"
+                            BorderBrush="{StaticResource AccentColor}">
+                            <TextBlock Text="{Binding CurrentEditIcon}" Foreground="#DDFFFFFF" FontFamily="/Meccanici;component/Fonts/#Segoe MDL2 Assets"/>
+                        </Button>
+                    </StackPanel>
+                </Grid>
+            </md:Card>
+        </Grid>
+    </Grid>
+</Page>
