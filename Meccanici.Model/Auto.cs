@@ -76,20 +76,40 @@ namespace Meccanici.Model
                 PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
             }
         }
-
+        private bool isEditing;
         public void BeginEdit()
         {
-            throw new NotImplementedException();
-        }
-
-        public void EndEdit()
-        {
-            throw new NotImplementedException();
+            if (!isEditing)
+            {
+                isEditing = true;
+                backupData = carData;
+                Console.WriteLine("Started Editing Car  {0}", Targa);
+            }
         }
 
         public void CancelEdit()
         {
-            throw new NotImplementedException();
+            if (isEditing)
+            {
+                carData = backupData;
+                OnPropertyChanged("Targa");
+                OnPropertyChanged("Anno");
+                OnPropertyChanged("Marca");
+                OnPropertyChanged("ID_Cliente");
+                OnPropertyChanged("Modello");
+                isEditing = false;
+                Console.WriteLine("Cancelled Editing Car {0}",  Targa);
+            }
+        }
+
+        public void EndEdit()
+        {
+            if (isEditing)
+            {
+                backupData = carData;
+                isEditing = false;
+                Console.WriteLine("Ended Editing Customer Car {0}", Targa);
+            }
         }
     }
-}
+    }

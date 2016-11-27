@@ -14,5 +14,6 @@ namespace Meccanici.DAL
         List<Auto> GetCustomerCars(int custID);
         Auto GetCarDetail(string carID);
         void UpdateCar(Auto car);
+        void NewCar(Auto car);
     }
 }

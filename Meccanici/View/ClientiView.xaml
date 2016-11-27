@@ -127,6 +127,7 @@
             </md:ColorZone>
             <ListBox
                 Background="Transparent"
+                ScrollViewer.CanContentScroll="False"
                 BorderBrush="Transparent"
                 Style="{StaticResource MaterialDesignListBox}"
                 Margin="0,50,0,0"

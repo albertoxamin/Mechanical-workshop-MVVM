@@ -3,7 +3,7 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-      xmlns:local="clr-namespace:Meccanici.View"
+      xmlns:local="clr-namespace:Meccanici.Controls"
       xmlns:md="http://materialdesigninxaml.net/winfx/xaml/themes"
       mc:Ignorable="d" 
       d:DesignHeight="300" d:DesignWidth="650"
@@ -49,6 +49,7 @@
         <EventTrigger RoutedEvent="FrameworkElement.Loaded">
             <BeginStoryboard Storyboard="{StaticResource Open}"/>
         </EventTrigger>
+        <EventTrigger RoutedEvent="FrameworkElement.Loaded" SourceName="saveButton"/>
     </Page.Triggers>
 
     <Grid>
@@ -81,6 +82,7 @@
             </md:ColorZone>
             <ListBox
                 Background="Transparent"
+                ScrollViewer.CanContentScroll="False"
                 BorderBrush="Transparent"
                 Margin="0,50,0,0"
                 ItemsSource="{Binding Cars}"
@@ -147,6 +149,24 @@
                     </DataTemplate>
                 </ListBox.ItemTemplate>
             </ListBox>
+
+            <Button x:Name="addCarButton"
+                            Width="40" Height="40"
+                            md:ShadowAssist.ShadowDepth="Depth3"
+                            Command="{Binding AddCarCommand}"
+                            Style="{StaticResource MaterialDesignFloatingActionAccentButton}"
+                            Background="{StaticResource AccentColor}"
+                            BorderBrush="{StaticResource AccentColor}" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,10,10" RenderTransformOrigin="0.5,0.5">
+                <Button.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform/>
+                        <SkewTransform/>
+                        <RotateTransform/>
+                        <TranslateTransform/>
+                    </TransformGroup>
+                </Button.RenderTransform>
+                <TextBlock Text="" Foreground="#DDFFFFFF" FontFamily="/Meccanici;component/Fonts/#Segoe MDL2 Assets"/>
+            </Button>
         </Grid>
         <Grid x:Name="grid1" Grid.Column="1"
               DataContext="{Binding SelectedCar}" RenderTransformOrigin="0.5,0.5">
@@ -168,40 +188,23 @@
                         <RowDefinition/>
                     </Grid.RowDefinitions>
                     <Grid Grid.Row="0">
-                        <Grid x:Name="targa" HorizontalAlignment="Center" Width="200" Height="50" VerticalAlignment="Top" Margin="0,20,0,0" RenderTransformOrigin="0.5,0.5" >
-                            <Grid.RenderTransform>
+                        <local:CarPlate
+                            x:Name="targa"
+                            HorizontalAlignment="Center"
+                            Width="200"
+                            Height="50"
+                            VerticalAlignment="Top"
+                            Margin="0,20,0,0"
+                            RenderTransformOrigin="0.5,0.5" >
+                            <local:CarPlate.RenderTransform>
                                 <TransformGroup>
                                     <ScaleTransform/>
                                     <SkewTransform/>
                                     <RotateTransform/>
                                     <TranslateTransform/>
                                 </TransformGroup>
-                            </Grid.RenderTransform>
-                            <md:Card VerticalAlignment="Stretch">
-                                <Border BorderThickness="2" BorderBrush="Black">
-                                    <Grid>
-                                        <Grid.ColumnDefinitions>
-                                            <ColumnDefinition Width="30"/>
-                                            <ColumnDefinition/>
-                                            <ColumnDefinition Width="30"/>
-                                        </Grid.ColumnDefinitions>
-                                        <Grid Grid.Column="0" Background="#FF006AB0">
-                                            <Image
-                                                Source="/Meccanici;component/Assets/europe.png" Width="20" VerticalAlignment="Top" Margin="0,5,0,0"/>
-                                            <TextBlock Text="I" Foreground="White" VerticalAlignment="Bottom" HorizontalAlignment="Center" FontWeight="Bold" Margin="0,0,0,2"/>
-                                        </Grid>
-                                        <Grid Grid.Column="1">
-                                            <TextBox
-                                                Text="{Binding Targa}"
-                                                BorderBrush="{x:Null}" TextAlignment="Center" FontWeight="Bold" BorderThickness="0" VerticalAlignment="Center" FontSize="24"/>
-                                        </Grid>
-                                        <Grid Grid.Column="2" Background="#FF006AB0">
-                                            <Ellipse Width="20" Height="20" VerticalAlignment="Top" Margin="0,5,0,0" Stroke="#FFFFCC00" StrokeThickness="2"/>
-                                        </Grid>
-                                    </Grid>
-                                </Border>
-                            </md:Card>
-                        </Grid>
+                            </local:CarPlate.RenderTransform>
+                        </local:CarPlate>
                         <Grid Margin="20,20,10,20" Height="80" VerticalAlignment="Bottom">
                             <Grid.RowDefinitions>
                                 <RowDefinition/>
@@ -382,6 +385,28 @@
                             </DataTemplate>
                         </ListBox.ItemTemplate>
                     </ListBox>
+                    <StackPanel
+                        Grid.RowSpan="2"
+                        Margin="0,0,10,20"
+                        HorizontalAlignment="Right"
+                        Orientation="Horizontal"
+                        VerticalAlignment="Bottom"
+                        DataContext="{Binding 
+                            RelativeSource={RelativeSource FindAncestor,
+                            AncestorType={x:Type Page}}, Path=DataContext}">
+                        <Button
+                        x:Name="saveButton"
+                        Width="40" Height="40"
+                        md:ShadowAssist.ShadowDepth="Depth3"
+                        Command="{Binding SaveCarCommand}"
+                        Style="{StaticResource MaterialDesignFloatingActionAccentButton}"
+                        Background="{StaticResource AccentColor}"
+                        BorderBrush="{StaticResource AccentColor}" RenderTransformOrigin="0.5,0.5">
+                            <Button.Content>
+                                <TextBlock Text="" Foreground="#DDFFFFFF" FontFamily="/Meccanici;component/Fonts/#Segoe MDL2 Assets"/>
+                            </Button.Content>
+                        </Button>
+                    </StackPanel>
                 </Grid>
             </md:Card>
         </Grid>

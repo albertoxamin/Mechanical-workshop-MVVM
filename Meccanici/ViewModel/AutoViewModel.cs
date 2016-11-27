@@ -7,6 +7,8 @@ using System.Threading.Tasks;
 using Meccanici.Model;
 using System.ComponentModel;
 using Meccanici.DAL;
+using System.Windows.Input;
+using Meccanici.Utility;
 
 namespace Meccanici.ViewModels
 {
@@ -67,9 +69,42 @@ namespace Meccanici.ViewModels
             }
         }
 
+        private bool isEditing;
+        public bool IsEditing
+        {
+            get { return isEditing; }
+            set
+            {
+                isEditing = value;
+                OnPropertyChanged("IsEditing");
+            }
+        }
+
+        public ICommand AddCarCommand { get; set; }
+        public ICommand SaveCarCommand { get; set; }
+        public ICommand DeleteCarCommand { get; set; }
+        private void NewCar(object obj)
+        {
+            SelectedCar = new Auto();
+            IsEditing = true;
+        }
+
+        private void SaveCar(object obj)
+        {
+            SelectedCar.EndEdit();
+            IsEditing = false;
+            if (!Cars.Contains(SelectedCar))
+            {
+                App.carDataService.NewCar(SelectedCar);
+                Cars.Add(SelectedCar);
+            }
+        }
+
         public AutoViewModel()
         {
             Cars = new ObservableCollection<Auto>(App.carDataService.GetAllCars());
+            AddCarCommand = new CustomCommand(NewCar, delegate { return true; });
+            SaveCarCommand = new CustomCommand(SaveCar, delegate { return IsEditing; });
             Clienti = App.customerDataService.GetAllCustomers();
         }
 

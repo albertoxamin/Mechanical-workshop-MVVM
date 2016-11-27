@@ -36,6 +36,14 @@ namespace Meccanici.DAL
             return cars.Where(x => x.ID_Cliente == custID).ToList();
         }
 
+        public void NewCar(Auto car)
+        {
+            if (car != null && cars != null)
+            {
+                cars.Add(car);
+            }
+        }
+
         public void UpdateCar(Auto car)
         {
             Auto carToUpdate = cars.Where(x => x.Targa == car.Targa).FirstOrDefault();
