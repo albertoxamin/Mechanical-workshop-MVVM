@@ -16,11 +16,11 @@ using System.Windows.Shapes;
 namespace Meccanici.View
 {
     /// <summary>
-    /// Interaction logic for AutoView.xaml
+    /// Logica di interazione per FixesView.xaml
     /// </summary>
-    public partial class AutoView : Page
+    public partial class FixesView : Page
     {
-        public AutoView()
+        public FixesView()
         {
             InitializeComponent();
         }

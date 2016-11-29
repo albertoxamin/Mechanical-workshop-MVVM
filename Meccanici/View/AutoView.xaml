@@ -7,7 +7,6 @@
       xmlns:md="http://materialdesigninxaml.net/winfx/xaml/themes"
       mc:Ignorable="d" 
       d:DesignHeight="300" d:DesignWidth="650"
-      xmlns:viewmodels="clr-namespace:Meccanici.ViewModels"
       DataContext="{Binding Source={StaticResource mainViewModelLocator}, Path=AutoViewModel}">
     <Page.Resources>
         <Storyboard x:Key="Open">

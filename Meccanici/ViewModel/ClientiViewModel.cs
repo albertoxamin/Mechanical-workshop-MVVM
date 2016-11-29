@@ -11,7 +11,7 @@ using Meccanici.Utility;
 using Meccanici.Services;
 using Meccanici.DAL;
 
-namespace Meccanici.ViewModels
+namespace Meccanici.ViewModel
 {
     public class ClientiViewModel : INotifyPropertyChanged
     {

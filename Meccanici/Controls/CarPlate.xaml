@@ -18,7 +18,7 @@
             </TransformGroup>
         </Grid.RenderTransform>
         <md:Card VerticalAlignment="Stretch">
-            <Border BorderThickness="2" BorderBrush="Black">
+            <Border BorderThickness="2" BorderBrush="Black" Background="White">
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="30"/>

@@ -1,4 +1,4 @@
-﻿using Meccanici.ViewModels;
+﻿using Meccanici.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;

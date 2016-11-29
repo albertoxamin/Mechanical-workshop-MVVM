@@ -10,7 +10,7 @@ using Meccanici.DAL;
 using System.Windows.Input;
 using Meccanici.Utility;
 
-namespace Meccanici.ViewModels
+namespace Meccanici.ViewModel
 {
     public class AutoViewModel : INotifyPropertyChanged
     {

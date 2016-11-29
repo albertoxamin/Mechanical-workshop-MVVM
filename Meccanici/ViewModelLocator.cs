@@ -1,6 +1,6 @@
 ﻿using Meccanici.DAL;
 using Meccanici.Services;
-using Meccanici.ViewModels;
+using Meccanici.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,6 +15,7 @@ namespace Meccanici
         private static ClientiViewModel clientiViewModel = new ClientiViewModel();
         private static MeccaniciViewModel meccaniciViewModel = new MeccaniciViewModel();
         private static AutoViewModel autoViewModel = new AutoViewModel();
+        private static FixesViewModel fixesViewModel = new FixesViewModel();
 
         public static HomeViewModel HomeViewModel
         {
@@ -45,6 +46,13 @@ namespace Meccanici
             get
             {
                 return meccaniciViewModel;
+            }
+        }
+        public static FixesViewModel FixesViewModel
+        {
+            get
+            {
+                return fixesViewModel;
             }
         }
     }

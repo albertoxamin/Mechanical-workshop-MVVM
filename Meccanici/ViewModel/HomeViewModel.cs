@@ -5,11 +5,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Meccanici.Model;
-using System.ComponentModel;
+using System.ComponentModel;    
 using System.Windows.Controls;
 using Meccanici.View;
 
-namespace Meccanici.ViewModels
+namespace Meccanici.ViewModel
 {
     public class HomeViewModel : INotifyPropertyChanged
     {
@@ -54,7 +54,7 @@ namespace Meccanici.ViewModels
             else if (SelectedTab.Title == "Automobili")
                 TabPage = new AutoView();
             else if (SelectedTab.Title == "Riparazioni")
-                TabPage = null;
+                TabPage = new FixesView();
             else if(SelectedTab.Title == "Dipendenti")
                 TabPage = new MeccaniciView();
 

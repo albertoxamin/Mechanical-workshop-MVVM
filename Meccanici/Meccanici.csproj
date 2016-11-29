@@ -93,11 +93,15 @@
     <Compile Include="Utility\CustomCommand.cs" />
     <Compile Include="ViewModelLocator.cs" />
     <Compile Include="ViewModel\AutoViewModel.cs" />
+    <Compile Include="ViewModel\FixesViewModel.cs" />
     <Compile Include="ViewModel\MeccaniciViewModel.cs" />
     <Compile Include="ViewModel\ClientiViewModel.cs" />
     <Compile Include="ViewModel\HomeViewModel.cs" />
     <Compile Include="View\AutoView.xaml.cs">
       <DependentUpon>AutoView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\FixesView.xaml.cs">
+      <DependentUpon>FixesView.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\MeccaniciView.xaml.cs">
       <DependentUpon>MeccaniciView.xaml</DependentUpon>
@@ -117,6 +121,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\AutoView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\FixesView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
