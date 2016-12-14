@@ -26,6 +26,23 @@ namespace Meccanici.ViewModel
             }
         }
 
+        private ObservableCollection<Auto> filteredCars;
+
+        public ObservableCollection<Auto> FilteredCars
+        {
+            get
+            {
+                return filteredCars ?? Cars;
+            }
+            set
+            {
+                filteredCars = value;
+                SelectedCar = filteredCars.FirstOrDefault();
+                OnPropertyChanged("FilteredCars");
+            }
+        }
+
+
         private Auto selectedCar;
 
         public Auto SelectedCar
@@ -40,9 +57,9 @@ namespace Meccanici.ViewModel
             }
         }
 
-        private Cliente selectedCarCustomer;
+        private Person selectedCarCustomer;
 
-        public Cliente SelectedCarCustomer
+        public Person SelectedCarCustomer
         {
             get { return selectedCarCustomer; }
             set
@@ -52,7 +69,7 @@ namespace Meccanici.ViewModel
             }
         }
 
-        public List<Cliente> Clienti
+        public List<Person> Clienti
         {
             get;set;
         }
@@ -83,6 +100,24 @@ namespace Meccanici.ViewModel
         public ICommand AddCarCommand { get; set; }
         public ICommand SaveCarCommand { get; set; }
         public ICommand DeleteCarCommand { get; set; }
+
+        private string searchString;
+
+        public string SearchString
+        {
+            get { return searchString; }
+            set
+            {
+                searchString = value.ToLower();
+                FilteredCars = new ObservableCollection<Auto>(Cars.Where(x => 
+                x.Marca.ToLower().Contains(SearchString) || 
+                x.Modello.ToLower().Contains(SearchString) || 
+                x.Targa.ToLower().Contains(SearchString) || 
+                x.Anno.ToString().Contains(SearchString)));
+                OnPropertyChanged("SearchString");
+            }
+        }
+
         private void NewCar(object obj)
         {
             SelectedCar = new Auto();

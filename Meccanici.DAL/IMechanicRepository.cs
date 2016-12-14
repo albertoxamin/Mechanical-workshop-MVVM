@@ -9,9 +9,9 @@ namespace Meccanici.DAL
 {
     public interface IMechanicRepository
     {
-        void DeleteMechanic(Meccanico mechanic);
-        List<Meccanico> GetAllMechanics();
-        Meccanico GetMechanicDetail(int mechanicID);
-        void UpdateMechanic(Meccanico mechanic);
+        void DeleteMechanic(Person mechanic);
+        List<Person> GetAllMechanics();
+        Person GetMechanicDetail(int mechanicID);
+        void UpdateMechanic(Person mechanic);
     }
 }

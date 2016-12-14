@@ -83,6 +83,7 @@
     <Compile Include="Controls\CarPlate.xaml.cs">
       <DependentUpon>CarPlate.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Converter\IdToMechanicConverter.cs" />
     <Compile Include="Converter\BoolToVisibilityConverter.cs" />
     <Compile Include="Converter\NiceDateConverter.cs" />
     <Compile Include="Converter\InvertBoolConverter.cs" />

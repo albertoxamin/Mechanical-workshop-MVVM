@@ -9,47 +9,47 @@ namespace Meccanici.DAL
 {
     public class CustomerRepository : ICustomerRepository
     {
-        private static List<Cliente> customers;
+        private static List<Person> customers;
 
-        public void DeleteCustomer(Cliente customer)
+        public void DeleteCustomer(Person customer)
         {
             customers.Remove(customer);
         }
 
-        public List<Cliente> GetAllCustomers()
+        public List<Person> GetAllCustomers()
         {
             if (customers == null)
                 LoadCustomers();
             return customers;
         }
 
-        public Cliente GetCustomerDetail(int customerID)
+        public Person GetCustomerDetail(int customerID)
         {
             if (customers == null)
                 LoadCustomers();
             return customers.Where(x => x.ID == customerID).FirstOrDefault();
         }
 
-        public void NewCustomer(Cliente customer)
+        public void NewCustomer(Person customer)
         {
             customers.Add(customer);
         }
 
-        public void UpdateCustomer(Cliente customer)
+        public void UpdateCustomer(Person customer)
         {
-            Cliente customerToUpdate = customers.Where(x => x.ID == customer.ID).FirstOrDefault();
+            Person customerToUpdate = customers.Where(x => x.ID == customer.ID).FirstOrDefault();
             customerToUpdate = customer;
         }
 
         private void LoadCustomers()
         {
-            customers = new List<Cliente>()
+            customers = new List<Person>()
             {
-                new Cliente() { ID = 1, Name = "Gino", Surname = "Fantozzi" },
-                new Cliente() { ID = 2, Name = "Elio", Surname = "Teso" },
-                new Cliente() { ID = 3, Name = "Giovanni", Surname = "Murica" },
-                new Cliente() { ID = 4, Name = "Walter", Surname = "White" },
-                new Cliente() { ID = 5, Name = "Heisenberg", Surname = "Chef" }
+                new Person() { ID = 1, Name = "Gino", Surname = "Fantozzi" },
+                new Person() { ID = 2, Name = "Elio", Surname = "Teso" },
+                new Person() { ID = 3, Name = "Giovanni", Surname = "Murica" },
+                new Person() { ID = 4, Name = "Walter", Surname = "White" },
+                new Person() { ID = 5, Name = "Heisenberg", Surname = "Chef" }
             };
         }
     }

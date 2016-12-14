@@ -15,20 +15,32 @@ namespace Meccanici.ViewModel
 {
     public class ClientiViewModel : INotifyPropertyChanged
     {
-        private ObservableCollection<Cliente> clienti;
+        private ObservableCollection<Person> clienti;
 
-        public ObservableCollection<Cliente> Clienti
+        public ObservableCollection<Person> Customers
         {
             get { return clienti; }
             set
             {
                 clienti = value;
-                OnPropertyChanged("Clienti");
+                OnPropertyChanged("Customers");
             }
         }
 
-        private Cliente selectedCustomer;
-        public Cliente SelectedCustomer
+        private ObservableCollection<Person> filteredCustomers;
+        public ObservableCollection<Person> FilteredCustomers
+        {
+            get { return filteredCustomers ?? Customers; }
+            set
+            {
+                filteredCustomers = value;
+                SelectedCustomer = filteredCustomers.FirstOrDefault();
+                OnPropertyChanged("FilteredCustomers");
+            }
+        }
+
+        private Person selectedCustomer;
+        public Person SelectedCustomer
         {
             get { return selectedCustomer; }
             set
@@ -105,23 +117,23 @@ namespace Meccanici.ViewModel
         {
             SelectedCustomer.EndEdit();
             IsEditing = false;
-            if (!Clienti.Contains(SelectedCustomer))
+            if (!Customers.Contains(SelectedCustomer))
             {
                 App.customerDataService.NewCustomer(SelectedCustomer);
-                Clienti.Add(SelectedCustomer);
+                Customers.Add(SelectedCustomer);
             }
         }
 
         private void NewCustomer(object obj)
         {
-            SelectedCustomer = new Cliente();
+            SelectedCustomer = new Person();
             IsEditing = true;
         }
 
         private void DeleteCustomer(object obj)
         {
             App.customerDataService.DeleteCustomer(SelectedCustomer);
-            Clienti.Remove(SelectedCustomer);
+            Customers.Remove(SelectedCustomer);
             //SelectedCustomer = Clienti.FirstOrDefault();
             IsEditing = false;
         }
@@ -134,11 +146,26 @@ namespace Meccanici.ViewModel
         private bool CanSaveCustomer(object obj)
         {
             return IsEditing;
+            
         }
 
         private bool CanDeleteCustomer(object obj)
         {
-            return Clienti.Contains(SelectedCustomer) && IsEditing;
+            return Customers.Contains(SelectedCustomer) && IsEditing;
+        }
+
+        private string searchString;
+        public string SearchString
+        {
+            get { return searchString; }
+            set
+            {
+                searchString = value.ToLower();
+                FilteredCustomers = new ObservableCollection<Person>(Customers.Where(x =>
+                x.Name.ToLower().Contains(SearchString) ||
+                x.Surname.ToLower().Contains(SearchString) ));
+                OnPropertyChanged("SearchString");
+            }
         }
 
         private void LoadCommands()
@@ -149,11 +176,20 @@ namespace Meccanici.ViewModel
             AddCustomerCommand = new CustomCommand(NewCustomer, delegate { return true; });
         }
 
-        public ClientiViewModel()
+        public ClientiViewModel(RepositoryType v)
         {
-            Clienti = new ObservableCollection<Cliente>(App.customerDataService.GetAllCustomers());
+            if (v == RepositoryType.Customers)
+                Customers = new ObservableCollection<Person>(App.customerDataService.GetAllCustomers());
+            else
+                Customers = new ObservableCollection<Person>(App.mechanicDataService.GetAllMechanics());
+            CurrentRepo = v;
             LoadCommands();
         }
+        public enum RepositoryType
+        {
+            Customers, Employees 
+        }
+        public RepositoryType CurrentRepo { get; set; }
 
         public event PropertyChangedEventHandler PropertyChanged;
         protected void OnPropertyChanged(string name)

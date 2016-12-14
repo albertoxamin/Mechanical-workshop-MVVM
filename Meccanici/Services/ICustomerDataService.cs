@@ -9,9 +9,9 @@ namespace Meccanici.Services
 {
     public interface ICustomerDataService
     {
-        void DeleteCustomer(Cliente customer);
-        List<Cliente> GetAllCustomers();
-        Cliente GetCustomerDetail(int customerID);
-        void UpdateCustomer(Cliente customer);
+        void DeleteCustomer(Person customer);
+        List<Person> GetAllCustomers();
+        Person GetCustomerDetail(int customerID);
+        void UpdateCustomer(Person customer);
     }
 }

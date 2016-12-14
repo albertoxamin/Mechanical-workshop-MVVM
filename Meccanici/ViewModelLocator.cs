@@ -13,7 +13,7 @@ namespace Meccanici
     {
         private static HomeViewModel homeViewModel = new HomeViewModel();
         private static ClientiViewModel clientiViewModel = new ClientiViewModel();
-        private static MeccaniciViewModel meccaniciViewModel = new MeccaniciViewModel();
+        private static ClientiViewModel meccaniciViewModel = new ClientiViewModel(true);
         private static AutoViewModel autoViewModel = new AutoViewModel();
         private static FixesViewModel fixesViewModel = new FixesViewModel();
 
@@ -41,7 +41,7 @@ namespace Meccanici
             }
         }
 
-        public static MeccaniciViewModel MeccaniciViewModel
+        public static ClientiViewModel MeccaniciViewModel
         {
             get
             {

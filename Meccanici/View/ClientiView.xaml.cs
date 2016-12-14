@@ -23,8 +23,16 @@ namespace Meccanici.View
     {
         public ClientiView()
         {
+            DataContext = ViewModelLocator.ClientiViewModel;
             InitializeComponent();
         }
+
+        public ClientiView(bool employee)
+        {
+            DataContext = ViewModelLocator.MeccaniciViewModel;
+            InitializeComponent();
+        }
+
 
         ClientiViewModel viewModel;
         private void Page_Loaded(object sender, RoutedEventArgs e)

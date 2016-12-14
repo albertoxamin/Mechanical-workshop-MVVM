@@ -11,6 +11,7 @@
             <SolidColorBrush x:Key="AccentColor" Color="#FF2057B6"/>
             <converter:InvertBoolConverter x:Key="invertBoolConverter"/>
             <converter:BoolToVisibilityConverter x:Key="boolToVisibilityConverter"/>
+            <converter:IdToMechanicConverter x:Key="idToMechanicConverter"/>
             <converter:NiceDateConverter x:Key="niceDateConverter"/>
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Light.xaml" />

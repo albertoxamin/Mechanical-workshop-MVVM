@@ -9,38 +9,38 @@ namespace Meccanici.DAL
 {
     public class MechanicRepository : IMechanicRepository
     {
-        private List<Meccanico> mechanics;
-        public void DeleteMechanic(Meccanico mechanic)
+        private List<Person> mechanics;
+        public void DeleteMechanic(Person mechanic)
         {
             mechanics.Remove(mechanic);
         }
 
-        public List<Meccanico> GetAllMechanics()
+        public List<Person> GetAllMechanics()
         {
             if (mechanics == null)
                 LoadMechanics();
             return mechanics;
         }
 
-        public Meccanico GetMechanicDetail(int mechanicID)
+        public Person GetMechanicDetail(int mechanicID)
         {
             if (mechanics == null)
                 LoadMechanics();
             return mechanics.Where(x=>x.ID == mechanicID).FirstOrDefault();
         }
 
-        public void UpdateMechanic(Meccanico mechanic)
+        public void UpdateMechanic(Person mechanic)
         {
-            Meccanico mechanicToUpdate = mechanics.Where(x => x.ID == mechanic.ID).FirstOrDefault();
+            Person mechanicToUpdate = mechanics.Where(x => x.ID == mechanic.ID).FirstOrDefault();
             mechanicToUpdate = mechanic;
         }
 
         void LoadMechanics()
         {
-            mechanics = new List<Meccanico>()
+            mechanics = new List<Person>()
             {
-                new Meccanico() { ID=1, Name = "Horacio", Surname = "Pagani" },
-                new Meccanico() { ID = 2, Name = "Enzo", Surname = "Ferrari" }
+                new Person() { ID=1, Name = "Horacio", Surname = "Pagani" },
+                new Person() { ID = 2, Name = "Enzo", Surname = "Ferrari" }
             };
         }
     }

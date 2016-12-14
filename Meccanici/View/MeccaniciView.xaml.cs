@@ -26,20 +26,20 @@ namespace Meccanici.View
             InitializeComponent();
         }
 
-        MeccaniciViewModel viewModel;
+        //MeccaniciViewModel viewModel;
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
-            viewModel = DataContext as MeccaniciViewModel;
-            viewModel.editingAnimation = SetEditing;
+        //    viewModel = DataContext as MeccaniciViewModel;
+        //    viewModel.editingAnimation = SetEditing;
         }
 
-        public void SetEditing()
-        {
-            if (viewModel.IsEditing)
-                (this.Resources["StartedEditingAnimation"] as Storyboard).Begin();
-            else
-                (this.Resources["StoppedEditingAnimation"] as Storyboard).Begin();
-        }
+        //public void SetEditing()
+        //{
+        //    if (viewModel.IsEditing)
+        //        (this.Resources["StartedEditingAnimation"] as Storyboard).Begin();
+        //    else
+        //        (this.Resources["StoppedEditingAnimation"] as Storyboard).Begin();
+        //}
 
     }
 }

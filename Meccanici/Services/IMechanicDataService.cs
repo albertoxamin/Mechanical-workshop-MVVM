@@ -9,9 +9,9 @@ namespace Meccanici.Services
 {
     public interface IMechanicDataService
     {
-        void DeleteMechanic(Meccanico customer);
-        List<Meccanico> GetAllMechanics();
-        Meccanico GetMechanicDetail(int customerID);
-        void UpdateMechanic(Meccanico customer);
+        void DeleteMechanic(Person customer);
+        List<Person> GetAllMechanics();
+        Person GetMechanicDetail(int customerID);
+        void UpdateMechanic(Person customer);
     }
 }

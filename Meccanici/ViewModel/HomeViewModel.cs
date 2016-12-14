@@ -56,7 +56,7 @@ namespace Meccanici.ViewModel
             else if (SelectedTab.Title == "Riparazioni")
                 TabPage = new FixesView();
             else if(SelectedTab.Title == "Dipendenti")
-                TabPage = new MeccaniciView();
+                TabPage = new ClientiView(true);
 
         }
 

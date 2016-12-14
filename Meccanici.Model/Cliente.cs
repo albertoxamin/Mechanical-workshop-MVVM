@@ -7,23 +7,23 @@ using System.Threading.Tasks;
 
 namespace Meccanici.Model
 {
-    public class Cliente : INotifyPropertyChanged, IEditableObject
+    public class Person : INotifyPropertyChanged, IEditableObject
     {
-        struct CustomerData
+        struct PersonData
         {
             internal int id;
             internal string name;
             internal string surname;
         }
 
-        private CustomerData customerData;
+        private PersonData personData;
 
         public int ID
         {
-            get { return customerData.id; }
+            get { return personData.id; }
             set
             {
-                customerData.id = value;
+                personData.id = value;
             }
         }
 
@@ -31,11 +31,11 @@ namespace Meccanici.Model
         {
             get
             {
-                return customerData.name;
+                return personData.name;
             }
             set
             {
-                customerData.name = value;
+                personData.name = value;
                 OnPropertyChanged("Name");
                 OnPropertyChanged("Initials");
             }
@@ -45,11 +45,11 @@ namespace Meccanici.Model
         {
             get
             {
-                return customerData.surname;
+                return personData.surname;
             }
             set
             {
-                customerData.surname = value;
+                personData.surname = value;
                 OnPropertyChanged("Surname");
                 OnPropertyChanged("Initials");
             }
@@ -72,7 +72,7 @@ namespace Meccanici.Model
             }
         }
 
-        private CustomerData backupData;
+        private PersonData backupData;
         private bool isEditing;
 
         public void BeginEdit()
@@ -80,7 +80,7 @@ namespace Meccanici.Model
             if (!isEditing)
             {
                 isEditing = true;
-                backupData = customerData;
+                backupData = personData;
                 Console.WriteLine("Started Editing Customer ({0} {1}) with ID {0}", Name, Surname, ID);
             }
         }
@@ -89,7 +89,7 @@ namespace Meccanici.Model
         {
             if (isEditing)
             {
-                customerData = backupData;
+                personData = backupData;
                 OnPropertyChanged("Name");
                 OnPropertyChanged("Surname");
                 OnPropertyChanged("Initials");
@@ -102,7 +102,7 @@ namespace Meccanici.Model
         {
             if (isEditing)
             {
-                backupData = customerData;
+                backupData = personData;
                 isEditing = false;
                 Console.WriteLine("Ended Editing Customer ({0} {1}) with ID {0}", Name, Surname, ID);
             }

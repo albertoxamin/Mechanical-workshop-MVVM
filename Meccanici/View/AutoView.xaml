@@ -20,23 +20,23 @@
             </DoubleAnimationUsingKeyFrames>
             <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.Y)" Storyboard.TargetName="grid1">
                 <EasingDoubleKeyFrame KeyTime="0" Value="400"/>
-                <EasingDoubleKeyFrame KeyTime="0:0:0.7" Value="0">
+                <EasingDoubleKeyFrame KeyTime="0:0:0.6" Value="0">
                     <EasingDoubleKeyFrame.EasingFunction>
                         <BackEase EasingMode="EaseInOut" Amplitude="0.2"/>
                     </EasingDoubleKeyFrame.EasingFunction>
                 </EasingDoubleKeyFrame>
             </DoubleAnimationUsingKeyFrames>
             <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleX)" Storyboard.TargetName="targa">
-                <EasingDoubleKeyFrame KeyTime="0" Value="0"/>
-                <EasingDoubleKeyFrame KeyTime="0:0:0.8" Value="1">
+                <EasingDoubleKeyFrame KeyTime="0" Value="2"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.6" Value="1">
                     <EasingDoubleKeyFrame.EasingFunction>
                         <BackEase EasingMode="EaseInOut"/>
                     </EasingDoubleKeyFrame.EasingFunction>
                 </EasingDoubleKeyFrame>
             </DoubleAnimationUsingKeyFrames>
             <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleY)" Storyboard.TargetName="targa">
-                <EasingDoubleKeyFrame KeyTime="0" Value="0"/>
-                <EasingDoubleKeyFrame KeyTime="0:0:0.8" Value="1">
+                <EasingDoubleKeyFrame KeyTime="0" Value="2"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.6" Value="1">
                     <EasingDoubleKeyFrame.EasingFunction>
                         <BackEase EasingMode="EaseInOut"/>
                     </EasingDoubleKeyFrame.EasingFunction>
@@ -75,7 +75,7 @@
                             <ColumnDefinition Width="*" />
                         </Grid.ColumnDefinitions>
                         <TextBlock Text="" Foreground="Black" Opacity=".56" FontFamily="/Meccanici;component/Fonts/#Segoe MDL2 Assets" VerticalAlignment="Center"/>
-                        <TextBox Grid.Column="1" Margin="8 0 0 0" BorderThickness="0"  />
+                        <TextBox Text="{Binding SearchString, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Grid.Column="1" Margin="8 0 0 0" BorderThickness="0"  />
                     </Grid>
                 </md:ColorZone>
             </md:ColorZone>
@@ -84,7 +84,7 @@
                 ScrollViewer.CanContentScroll="False"
                 BorderBrush="Transparent"
                 Margin="0,50,0,0"
-                ItemsSource="{Binding Cars}"
+                ItemsSource="{Binding FilteredCars}"
                 SelectedValue="{Binding SelectedCar}"
                 SelectedIndex="0" HorizontalContentAlignment="Stretch"
                 Style="{StaticResource MaterialDesignListBox}"
@@ -95,7 +95,7 @@
                             <Storyboard x:Key="AddRow">
                                 <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.X)" Storyboard.TargetName="grid">
                                     <EasingDoubleKeyFrame KeyTime="0" Value="-200"/>
-                                    <EasingDoubleKeyFrame KeyTime="0:0:0.8" Value="0">
+                                    <EasingDoubleKeyFrame KeyTime="0:0:0.36" Value="0">
                                         <EasingDoubleKeyFrame.EasingFunction>
                                             <BackEase EasingMode="EaseInOut" Amplitude="0.5"/>
                                         </EasingDoubleKeyFrame.EasingFunction>
@@ -306,7 +306,7 @@
                                                     <CircleEase EasingMode="EaseInOut"/>
                                                 </EasingDoubleKeyFrame.EasingFunction>
                                             </EasingDoubleKeyFrame>
-                                            <EasingDoubleKeyFrame KeyTime="0:0:0.9" Value="1">
+                                            <EasingDoubleKeyFrame KeyTime="0:0:0.6" Value="1">
                                                 <EasingDoubleKeyFrame.EasingFunction>
                                                     <BackEase EasingMode="EaseInOut"/>
                                                 </EasingDoubleKeyFrame.EasingFunction>
@@ -319,7 +319,7 @@
                                                     <CircleEase EasingMode="EaseInOut"/>
                                                 </EasingDoubleKeyFrame.EasingFunction>
                                             </EasingDoubleKeyFrame>
-                                            <EasingDoubleKeyFrame KeyTime="0:0:0.9" Value="1">
+                                            <EasingDoubleKeyFrame KeyTime="0:0:0.6" Value="1">
                                                 <EasingDoubleKeyFrame.EasingFunction>
                                                     <BackEase EasingMode="EaseInOut"/>
                                                 </EasingDoubleKeyFrame.EasingFunction>

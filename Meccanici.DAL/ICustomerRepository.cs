@@ -9,10 +9,10 @@ namespace Meccanici.DAL
 {
     public interface ICustomerRepository
     {
-        void DeleteCustomer(Cliente customer);
-        List<Cliente> GetAllCustomers();
-        Cliente GetCustomerDetail(int customerID);
-        void UpdateCustomer(Cliente customer);
-        void NewCustomer(Cliente customer);
+        void DeleteCustomer(Person customer);
+        List<Person> GetAllCustomers();
+        Person GetCustomerDetail(int customerID);
+        void UpdateCustomer(Person customer);
+        void NewCustomer(Person customer);
     }
 }

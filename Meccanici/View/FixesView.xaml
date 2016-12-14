@@ -5,11 +5,120 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:Meccanici.View"
       mc:Ignorable="d" 
-      d:DesignHeight="300" d:DesignWidth="300"
+      d:DesignHeight="300" d:DesignWidth="670"
       xmlns:md="http://materialdesigninxaml.net/winfx/xaml/themes"
       Title="FixesView" DataContext="{Binding Source={StaticResource mainViewModelLocator} ,Path=FixesViewModel}">
 
     <Grid>
-        
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition Width="0.5*"/>
+        </Grid.ColumnDefinitions>
+        <DataGrid ItemsSource="{Binding Fixes}"
+                  SelectedValue="{Binding SelectedFix, Mode=TwoWay}"
+                  AutoGenerateColumns="False" IsReadOnly="True"
+                  SelectionMode="Single">
+            <DataGrid.Resources>
+                <Style x:Key="CenterAlign" TargetType="TextBlock">
+                    <Setter Property="HorizontalAlignment" Value="Center" />
+                </Style>
+                <Style x:Key="RightAlign" TargetType="TextBlock">
+                    <Setter Property="HorizontalAlignment" Value="Right" />
+                </Style>
+            </DataGrid.Resources>
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="ID" Binding="{Binding ID}" SortMemberPath="Position" ElementStyle="{StaticResource CenterAlign}" />
+                <DataGridTextColumn Header="Auto" Binding="{Binding CarID}" SortMemberPath="Position" ElementStyle="{StaticResource CenterAlign}" />
+                <DataGridTextColumn Header="Meccanico" Binding="{Binding MechanicID, Converter={StaticResource idToMechanicConverter}}" ElementStyle="{StaticResource CenterAlign}" />
+                <DataGridTextColumn Header="Note" Binding="{Binding Note}" ElementStyle="{StaticResource CenterAlign}" />
+                <DataGridTextColumn Header="Data riparazione" Binding="{Binding Date}" ElementStyle="{StaticResource CenterAlign}" />
+            </DataGrid.Columns>
+        </DataGrid>
+        <Button
+               Width="40" Height="40"
+               md:ShadowAssist.ShadowDepth="Depth3"
+               Command="{Binding AddFixCommand}"
+               Style="{StaticResource MaterialDesignFloatingActionAccentButton}"
+               Background="{StaticResource AccentColor}"
+               BorderBrush="{StaticResource AccentColor}" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,10,10" RenderTransformOrigin="0.5,0.5">
+            <Button.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </Button.RenderTransform>
+            <TextBlock Text="" Foreground="#DDFFFFFF" FontFamily="/Meccanici;component/Fonts/#Segoe MDL2 Assets"/>
+        </Button>
+        <Grid Grid.Column="1"
+              DataContext="{Binding SelectedFix}">
+            <md:Card VerticalAlignment="Stretch" Margin="0,0,-2,-2">
+                <StackPanel Margin="20">
+                    <ComboBox
+                        Grid.Column="1"
+                        Grid.Row="1"
+                        md:HintAssist.Hint="Auto"
+                        IsReadOnly="{Binding 
+                        RelativeSource={RelativeSource FindAncestor,
+                        AncestorType={x:Type Page}},
+                        Path=DataContext.IsEditing, Converter={StaticResource invertBoolConverter}}"
+                        Style="{StaticResource MaterialDesignFloatingHintComboBox}"
+                        SelectedItem="{Binding 
+                        RelativeSource={RelativeSource FindAncestor,
+                        AncestorType={x:Type Page}},
+                        Path=DataContext.SelectedCarCustomer, Mode=TwoWay}"
+                        IsEditable="True"
+                        ItemsSource="{Binding 
+                        RelativeSource={RelativeSource FindAncestor,
+                        AncestorType={x:Type Page}},
+                        Path=DataContext.Clienti}"
+                        Margin="0" VerticalAlignment="Bottom">
+                        <ComboBox.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <VirtualizingStackPanel />
+                            </ItemsPanelTemplate>
+                        </ComboBox.ItemsPanel>
+                    </ComboBox>
+                    <ComboBox
+                        Grid.Column="1"
+                        Grid.Row="1"
+                        md:HintAssist.Hint="Meccanico"
+                        IsReadOnly="{Binding 
+                        RelativeSource={RelativeSource FindAncestor,
+                        AncestorType={x:Type Page}},
+                        Path=DataContext.IsEditing, Converter={StaticResource invertBoolConverter}}"
+                        Style="{StaticResource MaterialDesignFloatingHintComboBox}"
+                        SelectedItem="{Binding 
+                        RelativeSource={RelativeSource FindAncestor,
+                        AncestorType={x:Type Page}},
+                        Path=DataContext.SelectedCarCustomer, Mode=TwoWay}"
+                        IsEditable="True"
+                        ItemsSource="{Binding 
+                        RelativeSource={RelativeSource FindAncestor,
+                        AncestorType={x:Type Page}},
+                        Path=DataContext.Clienti}"
+                        Margin="0,2,0,0" VerticalAlignment="Bottom">
+                        <ComboBox.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <VirtualizingStackPanel />
+                            </ItemsPanelTemplate>
+                        </ComboBox.ItemsPanel>
+                    </ComboBox>
+                    <DatePicker
+                        Height="36" Margin="0,2,0,0"
+                        VerticalContentAlignment="Center"
+                        Text="{Binding Date}"/>
+                    <TextBox
+                        md:HintAssist.Hint="Note"
+                        IsReadOnly="{Binding 
+                        RelativeSource={RelativeSource FindAncestor,
+                        AncestorType={x:Type Page}},
+                        Path=DataContext.IsEditing, Converter={StaticResource invertBoolConverter}}"
+                        Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                        Text="{Binding Note, Mode=TwoWay}" Margin="0,2,2,0"/>
+                </StackPanel>
+            </md:Card>
+        </Grid>
     </Grid>
 </Page>
