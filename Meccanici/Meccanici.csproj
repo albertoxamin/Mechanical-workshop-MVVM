@@ -83,6 +83,7 @@
     <Compile Include="Controls\CarPlate.xaml.cs">
       <DependentUpon>CarPlate.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Converter\IdToClustomerConverter.cs" />
     <Compile Include="Converter\IdToMechanicConverter.cs" />
     <Compile Include="Converter\BoolToVisibilityConverter.cs" />
     <Compile Include="Converter\NiceDateConverter.cs" />
@@ -95,7 +96,6 @@
     <Compile Include="ViewModelLocator.cs" />
     <Compile Include="ViewModel\AutoViewModel.cs" />
     <Compile Include="ViewModel\FixesViewModel.cs" />
-    <Compile Include="ViewModel\MeccaniciViewModel.cs" />
     <Compile Include="ViewModel\ClientiViewModel.cs" />
     <Compile Include="ViewModel\HomeViewModel.cs" />
     <Compile Include="View\AutoView.xaml.cs">
@@ -103,9 +103,6 @@
     </Compile>
     <Compile Include="View\FixesView.xaml.cs">
       <DependentUpon>FixesView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="View\MeccaniciView.xaml.cs">
-      <DependentUpon>MeccaniciView.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\ClientiView.xaml.cs">
       <DependentUpon>ClientiView.xaml</DependentUpon>
@@ -116,6 +113,9 @@
     </Compile>
     <Compile Include="View\HomeView.xaml.cs">
       <DependentUpon>HomeView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\SettingsView.xaml.cs">
+      <DependentUpon>SettingsView.xaml</DependentUpon>
     </Compile>
     <Page Include="Controls\CarPlate.xaml">
       <SubType>Designer</SubType>
@@ -129,15 +129,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\MeccaniciView.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
     <Page Include="View\ClientiView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\HomeView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\SettingsView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

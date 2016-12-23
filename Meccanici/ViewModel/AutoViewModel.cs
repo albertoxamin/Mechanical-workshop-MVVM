@@ -126,6 +126,7 @@ namespace Meccanici.ViewModel
 
         private void SaveCar(object obj)
         {
+            SelectedCar.ID_Cliente = SelectedCarCustomer.ID;
             SelectedCar.EndEdit();
             IsEditing = false;
             if (!Cars.Contains(SelectedCar))
@@ -135,11 +136,18 @@ namespace Meccanici.ViewModel
             }
         }
 
+        private void DeleteCar(object obj)
+        {
+            App.carDataService.DeleteCar(SelectedCar);
+            SelectedCar = new Auto();
+        }
+
         public AutoViewModel()
         {
             Cars = new ObservableCollection<Auto>(App.carDataService.GetAllCars());
             AddCarCommand = new CustomCommand(NewCar, delegate { return true; });
             SaveCarCommand = new CustomCommand(SaveCar, delegate { return IsEditing; });
+            DeleteCarCommand = new CustomCommand(DeleteCar, delegate { return SelectedCar != null; });
             Clienti = App.customerDataService.GetAllCustomers();
         }
 

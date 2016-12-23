@@ -10,6 +10,7 @@ namespace Meccanici.DAL
     public interface IFixRepository
     {
         void DeleteFix(Riparazione fix);
+        void NewFix(Riparazione fix);
         List<Riparazione> GetAllFixes();
         List<Riparazione> GetCarFixes(string targa);
         List<Riparazione> GetMechanicFixes(int mechId);

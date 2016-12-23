@@ -12,8 +12,8 @@ namespace Meccanici
     public class ViewModelLocator
     {
         private static HomeViewModel homeViewModel = new HomeViewModel();
-        private static ClientiViewModel clientiViewModel = new ClientiViewModel();
-        private static ClientiViewModel meccaniciViewModel = new ClientiViewModel(true);
+        private static ClientiViewModel clientiViewModel = new ClientiViewModel(ClientiViewModel.RepositoryType.Customers);
+        private static ClientiViewModel meccaniciViewModel = new ClientiViewModel(ClientiViewModel.RepositoryType.Employees);
         private static AutoViewModel autoViewModel = new AutoViewModel();
         private static FixesViewModel fixesViewModel = new FixesViewModel();
 

@@ -53,7 +53,13 @@
         </Button>
         <Grid Grid.Column="1"
               DataContext="{Binding SelectedFix}">
-            <md:Card VerticalAlignment="Stretch" Margin="0,0,-2,-2">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="50"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <md:Card
+                Grid.Row="1"
+                VerticalAlignment="Stretch" Margin="0,0.4,-1.8,-4">
                 <StackPanel Margin="20">
                     <ComboBox
                         Grid.Column="1"
@@ -64,21 +70,29 @@
                         AncestorType={x:Type Page}},
                         Path=DataContext.IsEditing, Converter={StaticResource invertBoolConverter}}"
                         Style="{StaticResource MaterialDesignFloatingHintComboBox}"
-                        SelectedItem="{Binding 
-                        RelativeSource={RelativeSource FindAncestor,
-                        AncestorType={x:Type Page}},
-                        Path=DataContext.SelectedCarCustomer, Mode=TwoWay}"
+                        Text="{Binding CarID}"
                         IsEditable="True"
                         ItemsSource="{Binding 
                         RelativeSource={RelativeSource FindAncestor,
                         AncestorType={x:Type Page}},
-                        Path=DataContext.Clienti}"
+                        Path=DataContext.Cars}"
                         Margin="0" VerticalAlignment="Bottom">
                         <ComboBox.ItemsPanel>
                             <ItemsPanelTemplate>
                                 <VirtualizingStackPanel />
                             </ItemsPanelTemplate>
                         </ComboBox.ItemsPanel>
+                        <ComboBox.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="" 
+                                               FontFamily="/Meccanici;component/Fonts/#Segoe MDL2 Assets"/>
+                                    <TextBlock Text="{Binding Targa}" Margin="10,0,0,0"/>
+                                    <TextBlock Text="{Binding Marca}" Margin="10,0,0,0"/>
+                                    <TextBlock Text="{Binding Modello}" Margin="10,0,0,0"/>
+                                </StackPanel>
+                            </DataTemplate>
+                        </ComboBox.ItemTemplate>
                     </ComboBox>
                     <ComboBox
                         Grid.Column="1"
@@ -89,15 +103,19 @@
                         AncestorType={x:Type Page}},
                         Path=DataContext.IsEditing, Converter={StaticResource invertBoolConverter}}"
                         Style="{StaticResource MaterialDesignFloatingHintComboBox}"
-                        SelectedItem="{Binding 
+                        Text="{Binding 
                         RelativeSource={RelativeSource FindAncestor,
                         AncestorType={x:Type Page}},
-                        Path=DataContext.SelectedCarCustomer, Mode=TwoWay}"
+                        Path=DataContext.SelectedMechanic}"
+                        SelectedValue="{Binding 
+                        RelativeSource={RelativeSource FindAncestor,
+                        AncestorType={x:Type Page}},
+                        Path=DataContext.SelectedMechanic, Mode=TwoWay}"
                         IsEditable="True"
                         ItemsSource="{Binding 
                         RelativeSource={RelativeSource FindAncestor,
                         AncestorType={x:Type Page}},
-                        Path=DataContext.Clienti}"
+                        Path=DataContext.Mechanics}"
                         Margin="0,2,0,0" VerticalAlignment="Bottom">
                         <ComboBox.ItemsPanel>
                             <ItemsPanelTemplate>
@@ -117,8 +135,20 @@
                         Path=DataContext.IsEditing, Converter={StaticResource invertBoolConverter}}"
                         Style="{StaticResource MaterialDesignFloatingHintTextBox}"
                         Text="{Binding Note, Mode=TwoWay}" Margin="0,2,2,0"/>
+                    <Button  
+                        BorderBrush="{StaticResource AccentColor}"
+                        Background="{StaticResource AccentColor}"
+                        Command="{Binding 
+                            RelativeSource={RelativeSource FindAncestor,
+                            AncestorType={x:Type Page}},
+                            Path=DataContext.SaveFixCommand}"
+                        Content="SALVA" Margin="0,10,0,0" HorizontalAlignment="Right"/>
                 </StackPanel>
             </md:Card>
+            <md:ColorZone Grid.Row="0"
+                          Background="{StaticResource AccentColor}" VerticalAlignment="Stretch">
+                <TextBlock Text="Dettaglio riparazione" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="10,0,0,0" FontSize="16" Foreground="#DDFFFFFF" FontWeight="Medium"/>
+            </md:ColorZone>
         </Grid>
     </Grid>
 </Page>

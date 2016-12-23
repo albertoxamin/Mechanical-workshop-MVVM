@@ -64,5 +64,11 @@ namespace Meccanici.DAL
                 new Riparazione() { ID=8, CarID="FI001NE", Date=new DateTime(2015,12,12), MechanicID=1, Note="ads la batteria" }
             };
         }
+
+        public void NewFix(Riparazione fix)
+        {
+            fix.ID = fixes.Count + 1;
+            fixes.Add(fix);
+        }
     }
 }

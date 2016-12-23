@@ -15,6 +15,11 @@ namespace Meccanici.Model
             internal int id_Cliente;
         }
 
+        public override string ToString()
+        {
+            return carData.targa;
+        }
+
         private CarData carData;
         private CarData backupData;
 

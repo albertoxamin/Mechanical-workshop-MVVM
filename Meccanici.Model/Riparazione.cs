@@ -16,6 +16,11 @@ namespace Meccanici.Model
         private string note;
         private DateTime date;
 
+        public Riparazione()
+        {
+            date = DateTime.Today;
+        }
+
         public int ID
         {
             get { return id; }

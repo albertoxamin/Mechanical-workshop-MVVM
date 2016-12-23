@@ -46,7 +46,7 @@ namespace Meccanici.ViewModel
             set
             {
                 selectedCustomer = value;
-                if (value != null)
+                if (value != null && CurrentRepo == RepositoryType.Customers)
                     SelectedCustomerCars = App.carDataService.GetCustomerCars(SelectedCustomer.ID);
                 else
                     SelectedCustomerCars = null;
@@ -84,7 +84,7 @@ namespace Meccanici.ViewModel
                 else
                     CurrentEditIcon = "";
                 OnPropertyChanged("IsEditing");
-                editingAnimation.Invoke();
+                editingAnimation?.Invoke();
             }
         }
 
@@ -180,7 +180,7 @@ namespace Meccanici.ViewModel
         {
             if (v == RepositoryType.Customers)
                 Customers = new ObservableCollection<Person>(App.customerDataService.GetAllCustomers());
-            else
+            else if (v == RepositoryType.Employees)
                 Customers = new ObservableCollection<Person>(App.mechanicDataService.GetAllMechanics());
             CurrentRepo = v;
             LoadCommands();

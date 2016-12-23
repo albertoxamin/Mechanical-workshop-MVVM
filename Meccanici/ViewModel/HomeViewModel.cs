@@ -49,15 +49,27 @@ namespace Meccanici.ViewModel
 
         void LoadFrame()
         {
-            if (SelectedTab.Title == "Clienti")
-                TabPage = new ClientiView();
-            else if (SelectedTab.Title == "Automobili")
-                TabPage = new AutoView();
-            else if (SelectedTab.Title == "Riparazioni")
-                TabPage = new FixesView();
-            else if(SelectedTab.Title == "Dipendenti")
-                TabPage = new ClientiView(true);
-
+            switch (SelectedTab.Title)
+            {
+                case "Clienti":
+                    TabPage = new ClientiView();
+                    break;
+                case "Automobili":
+                    TabPage = new AutoView();
+                    break;
+                case "Riparazioni":
+                    TabPage = new FixesView();
+                    break;
+                case "Dipendenti":
+                    TabPage = new ClientiView(true);
+                    break;
+                case "Impostazioni":
+                    TabPage = new SettingsView();
+                    break;
+                default:
+                    TabPage = new Page();
+                    break;
+            }
         }
 
         public HomeViewModel()
@@ -67,6 +79,7 @@ namespace Meccanici.ViewModel
             Tabs.Add(new Tab() { Title = "Automobili",  Icon = ""});
             Tabs.Add(new Tab() { Title = "Riparazioni", Icon = ""});
             Tabs.Add(new Tab() { Title = "Dipendenti",  Icon = ""});
+            //Tabs.Add(new Tab() { Title = "Impostazioni",Icon = "" });
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
