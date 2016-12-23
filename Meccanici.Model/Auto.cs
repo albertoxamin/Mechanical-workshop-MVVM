@@ -7,7 +7,6 @@ namespace Meccanici.Model
     {
         struct CarData
         {
-            internal int id;
             internal string marca;
             internal string modello;
             internal string targa;
@@ -88,7 +87,7 @@ namespace Meccanici.Model
             {
                 isEditing = true;
                 backupData = carData;
-                Console.WriteLine("Started Editing Car  {0}", Targa);
+                Console.WriteLine("Started Editing Car {0}", Targa);
             }
         }
 

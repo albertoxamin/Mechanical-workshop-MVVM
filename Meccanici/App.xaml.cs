@@ -14,7 +14,7 @@ namespace Meccanici
     /// </summary>
     public partial class App : Application
     {
-        Services.DBConnection dbConnection = new Services.DBConnection();
+        DBConnection dbConnection = new DBConnection();
         public static ICustomerRepository customerDataService = new CustomerRepository();
         public static ICarRepository carDataService = new CarRepository();
         public static IMechanicRepository mechanicDataService = new MechanicRepository();

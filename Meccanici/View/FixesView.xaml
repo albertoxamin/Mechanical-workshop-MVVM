@@ -31,7 +31,7 @@
                 <DataGridTextColumn Header="Auto" Binding="{Binding CarID}" SortMemberPath="Position" ElementStyle="{StaticResource CenterAlign}" />
                 <DataGridTextColumn Header="Meccanico" Binding="{Binding MechanicID, Converter={StaticResource idToMechanicConverter}}" ElementStyle="{StaticResource CenterAlign}" />
                 <DataGridTextColumn Header="Note" Binding="{Binding Note}" ElementStyle="{StaticResource CenterAlign}" />
-                <DataGridTextColumn Header="Data riparazione" Binding="{Binding Date}" ElementStyle="{StaticResource CenterAlign}" />
+                <DataGridTextColumn Header="Data riparazione" Binding="{Binding Date, Converter={StaticResource noHoursDateConverter}}" ElementStyle="{StaticResource CenterAlign}" />
             </DataGrid.Columns>
         </DataGrid>
         <Button

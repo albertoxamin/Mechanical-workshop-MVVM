@@ -119,7 +119,10 @@ namespace Meccanici.ViewModel
             IsEditing = false;
             if (!Customers.Contains(SelectedCustomer))
             {
+                if (CurrentRepo == RepositoryType.Customers)
                 App.customerDataService.NewCustomer(SelectedCustomer);
+                else if (CurrentRepo == RepositoryType.Employees)
+                    App.mechanicDataService.NewEmployee(SelectedCustomer);
                 Customers.Add(SelectedCustomer);
             }
         }

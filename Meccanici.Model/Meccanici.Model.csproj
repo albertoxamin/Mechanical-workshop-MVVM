@@ -40,8 +40,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Auto.cs" />
-    <Compile Include="Cliente.cs" />
-    <Compile Include="Meccanico.cs" />
+    <Compile Include="Person.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Riparazione.cs" />
   </ItemGroup>

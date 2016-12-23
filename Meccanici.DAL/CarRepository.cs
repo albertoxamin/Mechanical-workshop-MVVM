@@ -10,6 +10,7 @@ namespace Meccanici.DAL
     public class CarRepository : ICarRepository
     {
         private List<Auto> cars;
+
         public void DeleteCar(Auto car)
         {
             cars.Remove(car);
@@ -40,6 +41,8 @@ namespace Meccanici.DAL
         {
             if (car != null && cars != null)
             {
+                string values = "'" + car.Marca + "','" + car.Modello + "'," + car.Anno + ",'" + car.Targa + "'," + car.ID_Cliente;
+                DBConnection.instance.InsertInto(TABLE_NAME, "Marca,Modello,Anno,PlateCode,Owner_ID", values);
                 cars.Add(car);
             }
         }
@@ -50,16 +53,24 @@ namespace Meccanici.DAL
             carToUpdate = car;
         }
 
-        private void LoadCars()
+        private const string TABLE_NAME = "car";
+
+        private async void LoadCars()
         {
-            cars = new List<Auto>()
+            cars = new List<Auto>();
+            var res = DBConnection.instance.ExecuteQuery("SELECT * FROM " + TABLE_NAME).Result;
+            while (res.Read())
             {
-                new Auto() { Marca = "Nissan", Modello = "Juke", Anno = 2010, Targa = "FI007NE", ID_Cliente = 1 },
-                new Auto() { Marca = "Mercedes", Modello = "Berlina", Anno = 2012, Targa = "FI001NE", ID_Cliente = 2 },
-                new Auto() { Marca = "Pagani", Modello = "Huayra", Anno = 2011, Targa = "EK650VV", ID_Cliente = 3 },
-                new Auto() { Marca = "Porsche", Modello = "911 Turbo S", Anno = 2007, Targa = "FI001GE", ID_Cliente = 4 },
-                new Auto() { Marca = "Bugatti", Modello = "Chiron", Anno = 2016, Targa = "FI001GE", ID_Cliente = 5 }
-            };
+                cars.Add(new Auto()
+                {
+                    Marca = (string)res["Marca"],
+                    Modello = (string)res["Modello"],
+                    Anno = (int)res["Anno"],
+                    Targa = (string)res["PlateCode"],
+                    ID_Cliente = (int)res["Owner_ID"]
+                });
+            }
+            res.Close();
         }
     }
 }

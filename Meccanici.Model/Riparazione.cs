@@ -12,8 +12,7 @@ namespace Meccanici.Model
         private int id;
         private int mechanicID;
         private string carID;
-        private int customerID;
-        private string note;
+        private string note;    
         private DateTime date;
 
         public Riparazione()
@@ -48,16 +47,6 @@ namespace Meccanici.Model
             {
                 carID = value;
                 OnPropertyChanged("CarID");
-            }
-        }
-
-        public int CustomerID
-        {
-            get { return customerID; }
-            set
-            {
-                customerID = value;
-                OnPropertyChanged("CustomerID");
             }
         }
 

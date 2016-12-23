@@ -13,5 +13,6 @@ namespace Meccanici.DAL
         List<Person> GetAllMechanics();
         Person GetMechanicDetail(int mechanicID);
         void UpdateMechanic(Person mechanic);
+        void NewEmployee(Person selectedCustomer);
     }
 }
